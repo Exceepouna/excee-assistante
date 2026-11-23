@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101010"><meta name="description" content="Excée Assistante — votre assistante personnelle">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
+<title>Excée Assistante</title>
+<style>
+:root{--bg:#0c0c0d;--panel:#171718;--gold:#d6b46a;--gold2:#f1d99c;--muted:#aaa39a;--line:#34302a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#262116 0,#0c0c0d 48%);color:#f7f3e9;font-family:Inter,system-ui,-apple-system,sans-serif;min-height:100vh}
+.app{max-width:760px;margin:auto;padding:22px 16px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.brand{display:flex;gap:12px;align-items:center}.mark{width:44px;height:44px;border:1px solid var(--gold);border-radius:14px;display:grid;place-items:center;color:var(--gold);font-weight:800;font-size:21px;box-shadow:0 0 22px #d6b46a22}
+h1{font-size:17px;margin:0;letter-spacing:.5px}.sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:1.3px;text-transform:uppercase}
+.pill{border:1px solid #51452e;border-radius:99px;padding:7px 10px;color:var(--gold2);font-size:11px}
+.hero{text-align:center;padding:18px 12px 24px}.orb{width:104px;height:104px;margin:0 auto 17px;border-radius:50%;border:1px solid #b99550;background:radial-gradient(circle at 35% 30%,#6b542c,#1b1812 62%,#0d0d0d);display:grid;place-items:center;box-shadow:0 0 45px #d6b46a24,inset 0 0 25px #d6b46a22;color:var(--gold2);font-size:38px}
+.hero h2{font-size:25px;margin:0 0 7px}.hero p{color:var(--muted);font-size:13px;margin:0}
+.card{background:linear-gradient(145deg,#1a1a1b,#121213);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 12px 32px #0004}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+select,textarea,input{background:#101011;color:#f7f3e9;border:1px solid #4a402e;border-radius:12px;padding:11px;font:inherit;outline:none}select{max-width:170px}
+.chat{height:250px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:12px 2px}
+.msg{max-width:88%;padding:11px 13px;border-radius:15px;font-size:14px;line-height:1.45;white-space:pre-wrap}.bot{align-self:flex-start;background:#24211b;border:1px solid #55472e}.you{align-self:flex-end;background:#594522;color:#fff4d8}
+.compose{display:flex;gap:8px;align-items:end}.compose textarea{flex:1;resize:vertical;min-height:48px;max-height:120px}
+button{border:1px solid #a98748;background:linear-gradient(135deg,#d6b46a,#987334);color:#17130c;border-radius:13px;padding:12px 14px;font-weight:700;cursor:pointer}
+button.secondary{background:#211d15;color:var(--gold2);border-color:#58482b}.mic{width:48px;height:48px;padding:0;font-size:19px}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.actions button{font-size:12px;padding:11px 5px}
+.note{font-size:11px;line-height:1.5;color:#aaa39a;margin:10px 2px 0}.foot{text-align:center;color:#77716a;font-size:11px;padding:12px}
+@media(max-width:420px){.hero h2{font-size:22px}.actions{grid-template-columns:1fr 1fr}.pill{font-size:10px}}
+</style></head>
+<body><main class="app">
+<header class="top"><div class="brand"><div class="mark">É</div><div><h1>EXCÉE ASSISTANTE</h1><div class="sub">Votre assistante personnelle</div></div></div><span class="pill">● En ligne</span></header>
+<section class="hero"><div class="orb">✦</div><h2>Bonjour, Excée.</h2><p>Je suis prête à vous aider à organiser votre journée.</p></section>
+<section class="card"><div class="row"><span class="label">Langue de conversation</span><select id="lang"><option value="fr-FR">Français</option><option value="en-US">English</option><option value="ln">Lingala (saisie texte)</option></select></div></section>
+<section class="card"><div class="row"><span class="label">Votre espace de discussion</span><span class="label">Assistant IA · Démo</span></div>
+<div class="chat" id="chat" aria-live="polite"><div class="msg bot">Bonjour ! Je suis Excée Assistante. Je peux vous aider à rédiger un message, préparer un appel ou organiser vos tâches. Que souhaitez-vous faire ?</div></div>
+<div class="compose"><textarea id="prompt" placeholder="Écrivez votre demande…"></textarea><button class="mic secondary" id="mic" title="Dicter">🎙</button><button id="send">Envoyer</button></div>
+<div class="actions"><button class="secondary" data-prompt="Aide-moi à organiser ma journée.">▦ Organiser ma journée</button><button class="secondary" data-prompt="Rédige un message professionnel pour moi.">✎ Rédiger un message</button><button class="secondary" data-prompt="Prépare un script pour appeler quelqu'un.">☎ Préparer un appel</button></div>
+<p class="note">Prototype d'interface : les messages sont traités localement pour la démonstration. Aucun message WhatsApp/SMS ni appel réel n'est envoyé depuis cette version.</p></section>
+<section class="card"><div class="row"><div><div class="label">Votre assistante</div><strong>Excée Assistante</strong><div class="note">Personnalité : sérieuse et très organisée</div></div><span style="color:var(--gold);font-size:24px">✧</span></div></section>
+<div class="foot">Noir &amp; doré · Français · English · Lingala</div>
+</main>
+<script>
+const chat=document.getElementById('chat'), promptBox=document.getElementById('prompt'), lang=document.getElementById('lang');
+function add(text,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight}
+function answer(t){const s=t.toLowerCase();if(s.includes('message')||s.includes('rédige'))return "Bien sûr. Indiquez-moi le destinataire, le contexte et le ton souhaité. Je peux préparer le texte ; l'envoi réel nécessitera ensuite une connexion sécurisée à votre service de messagerie.";if(s.includes('appel')||s.includes('appelle'))return "Je peux préparer votre appel. Donnez-moi le nom du destinataire, l'objectif et les points à communiquer. Cette version de démonstration ne passe pas encore d'appel.";if(s.includes('journée')||s.includes('organiser'))return "Commençons par vos priorités. Notez vos rendez-vous, vos cours ou vos tâches importantes, puis je vous aiderai à les classer par ordre d'urgence.";return "J'ai bien reçu votre demande. Pour vous aider précisément, donnez-moi un peu plus de contexte et je vous proposerai une réponse structurée. Cette interface est actuellement une démonstration locale, pas encore connectée à un modèle IA."; }
+function send(){const t=promptBox.value.trim();if(!t)return;add(t,'you');promptBox.value='';setTimeout(()=>add(answer(t),'bot'),250)}
+document.getElementById('send').onclick=send;promptBox.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.onclick=()=>{promptBox.value=b.dataset.prompt;promptBox.focus()});
+document.getElementById('mic').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){add("La dictée vocale n'est pas disponible dans ce navigateur. Essayez Safari récent ou utilisez le clavier de dictée de l'iPhone.",'bot');return}const r=new SR();r.lang=lang.value==='ln'?'fr-FR':lang.value;r.onresult=e=>{promptBox.value=e.results[0][0].transcript};r.onerror=()=>add("Je n'ai pas pu accéder au microphone. Vérifiez l'autorisation du navigateur.",'bot');r.start()};
+if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
